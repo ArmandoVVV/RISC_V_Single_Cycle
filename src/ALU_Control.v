@@ -22,9 +22,16 @@ module ALU_Control
 	output [3:0] ALU_Operation_o
 
 );
-								// funct_7 - ALU_Op - funct3
-localparam R_Type_ADD		= 7'b0_000_000;
+								// funct_7 - ALU_Op - funct3     funct7 y 3 vienen del reference sheet
+localparam R_Type_ADD		= 7'b0_000_000;				// ALU_op es arbitrario y es diferente por cada type
+localparam R_Type_SUB		= 7'b1_000_000;
+
 localparam I_Type_ADDI		= 7'bx_001_000;
+localparam I_Type_ORI		= 7'bx_001_110;
+localparam I_Type_SLLI		= 7'b0_001_001;
+localparam I_Type_SRLI		= 7'b0_001_101;
+
+localparam U_Type_LUI		= 7'bx_010_xxx;
 
 
 reg [3:0] alu_control_values;
@@ -35,7 +42,14 @@ assign selector = {funct7_i, ALU_Op_i, funct3_i};
 always@(selector)begin
 	casex(selector)	// si el selector coincide con algun localparam salta a la instruccion indicada
 		R_Type_ADD:		alu_control_values = 4'b0000;
+		R_Type_SUB:		alu_control_values = 4'b0101;
+		
 		I_Type_ADDI:	alu_control_values = 4'b0000;
+		I_Type_ORI:		alu_control_values = 4'b0010;
+		I_Type_SLLI:	alu_control_values = 4'b0011;
+		I_Type_SRLI:	alu_control_values = 4'b0100;
+		
+		U_Type_LUI:		alu_control_values = 4'b0001;
 	
 
 		default: alu_control_values = 4'b00_00;

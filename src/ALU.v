@@ -24,12 +24,28 @@ module ALU
 );
 
 localparam ADD = 4'b0000;
+localparam LUI = 4'b0001;
+localparam ORI = 4'b0010;
+localparam SLLI = 4'b0011;
+localparam SRLI = 4'b0100;
+localparam SUB = 4'b0101;
+
    
    always @ (A_i or B_i or ALU_Operation_i)
      begin
 		case (ALU_Operation_i)
 		ADD:	// Add
 			ALU_Result_o = A_i + B_i;
+		LUI:
+			ALU_Result_o = B_i << 12;
+		ORI:
+			ALU_Result_o = A_i | B_i;
+		SLLI:
+			ALU_Result_o = A_i << B_i;
+		SRLI:
+			ALU_Result_o = A_i >> B_i;
+		SUB:
+			ALU_Result_o = A_i - B_i;
 
 	
 		default:

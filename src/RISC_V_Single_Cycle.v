@@ -20,7 +20,8 @@
 module RISC_V_Single_Cycle
 #(
 	parameter PROGRAM_MEMORY_DEPTH = 64,
-	parameter DATA_MEMORY_DEPTH = 128
+	parameter DATA_MEMORY_DEPTH = 256,
+	parameter DATA_WIDTH = 32
 )
 
 (
@@ -37,6 +38,7 @@ module RISC_V_Single_Cycle
 /* Signals to connect modules*/
 
 /**Control**/
+wire branch_w;				// agregado
 wire alu_src_w;
 wire reg_write_w;
 wire mem_to_reg_w;
@@ -58,6 +60,7 @@ wire [31:0] inmmediate_data_w;
 
 /**ALU**/
 wire [31:0] alu_result_w;
+wire zero_w;	// agregado
 
 /**Multiplexer MUX_DATA_OR_IMM_FOR_ALU**/
 wire [31:0] read_data_2_or_imm_w;
@@ -68,6 +71,20 @@ wire [3:0] alu_operation_w;
 /**Instruction Bus**/	
 wire [31:0] instruction_bus_w;
 
+/**Data Memory**/
+wire [DATA_WIDTH-1:0] read_data_w;
+
+/**PC_PLUS_IMM**/
+wire [31:0] pc_plus_imm_w;
+
+/**PC_PLUS_4_OR_PC_PLUS_IMM**/
+wire [31:0] pc_mux_result_w;
+
+/**OR_operator**/
+wire PCSrc_w;
+
+/**READ_DATA_OR_ALU_RESULT**/
+wire [31:0] alu_or_read_data_w;
 
 //******************************************************************/
 //******************************************************************/
@@ -80,6 +97,7 @@ CONTROL_UNIT
 	/****/
 	.OP_i(instruction_bus_w[6:0]),
 	/** outputus**/
+	.Branch_o(branch_w),
 	.ALU_Op_o(alu_op_w),
 	.ALU_Src_o(alu_src_w),
 	.Reg_Write_o(reg_write_w),
@@ -95,6 +113,24 @@ PROGRAM_COUNTER
 	.reset(reset),
 	.Next_PC(pc_plus_4_w),
 	.PC_Value(pc_w)
+);
+
+
+Data_Memory 
+#(	
+	.DATA_WIDTH(DATA_WIDTH),
+	.MEMORY_DEPTH(DATA_MEMORY_DEPTH)
+
+)
+DATA_MEMORY
+(
+	.clk(clk),
+	.Mem_Write_i(mem_write_w),
+	.Mem_Read_i(mem_read_w),
+	.Write_Data_i(read_data_2_w),
+	.Address_i(alu_result_w),
+	
+	.Read_Data_o(read_data_w)
 );
 
 
@@ -118,6 +154,14 @@ PC_PLUS_4
 	.Result(pc_plus_4_w)
 );
 
+Adder_32_Bits		// modulo nuevo adder de pc + immediate
+PC_PLUS_IMM
+(
+	.Data0(pc_w),
+	.Data1(inmmediate_data_w),
+	.Result(pc_plus_imm_w)
+);
+
 
 //******************************************************************/
 //******************************************************************/
@@ -136,7 +180,7 @@ REGISTER_FILE_UNIT
 	.Write_Register_i(instruction_bus_w[11:7]),
 	.Read_Register_1_i(instruction_bus_w[19:15]),
 	.Read_Register_2_i(instruction_bus_w[24:20]),
-	.Write_Data_i(alu_result_w),
+	.Write_Data_i(alu_or_read_data_w),
 	.Read_Data_1_o(read_data_1_w),
 	.Read_Data_2_o(read_data_2_w)
 
@@ -167,6 +211,19 @@ MUX_DATA_OR_IMM_FOR_ALU
 
 );
 
+Multiplexer_2_to_1		// nuevo modulo
+#(
+	.NBits(32)
+)
+PC_PLUS_4_OR_PC_PLUS_IMM
+(
+	.Selector_i(PCSrc_w),
+	.Mux_Data_0_i(pc_plus_4_w),
+	.Mux_Data_1_i(pc_plus_imm_w),
+	
+	.Mux_Output_o(pc_mux_result_w)
+
+);
 
 ALU_Control
 ALU_CONTROL_UNIT
@@ -183,12 +240,35 @@ ALU_CONTROL_UNIT
 ALU
 ALU_UNIT
 (
+	.Zero_o(zero_w), // agregado
 	.ALU_Operation_i(alu_operation_w),
 	.A_i(read_data_1_w),
 	.B_i(read_data_2_or_imm_w),
 	.ALU_Result_o(alu_result_w)
 );
 
+OR_operator
+OR_OPERATOR_UNIT
+(
+	.OR_data0_i(branch_w),
+	.OR_data1_i(zero_w),
+	
+	.OR_result_o(PCSrc_w)
+);
+
+Multiplexer_2_to_1		// nuevo modulo
+#(
+	.NBits(32)
+)
+READ_DATA_OR_ALU_RESULT
+(
+	.Selector_i(mem_to_reg_w),
+	.Mux_Data_0_i(alu_result_w),
+	.Mux_Data_1_i(read_data_w),
+	
+	.Mux_Output_o(alu_or_read_data_w)
+
+);
 
 
 
