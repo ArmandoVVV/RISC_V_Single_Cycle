@@ -29,7 +29,8 @@ localparam ORI = 4'b0010;
 localparam SLLI = 4'b0011;
 localparam SRLI = 4'b0100;
 localparam SUB = 4'b0101;
-
+localparam AND = 4'b0111;
+localparam XOR = 4'b1000;
    
    always @ (A_i or B_i or ALU_Operation_i)
      begin
@@ -46,6 +47,10 @@ localparam SUB = 4'b0101;
 			ALU_Result_o = A_i >> B_i;
 		SUB:
 			ALU_Result_o = A_i - B_i;
+		AND:
+			ALU_Result_o = A_i & B_i;
+		XOR:
+			ALU_Result_o = A_i ^ B_i;
 
 	
 		default:
