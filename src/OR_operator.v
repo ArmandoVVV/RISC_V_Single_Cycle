@@ -1,13 +1,13 @@
-module OR_operator
+module AND_operator
 (
-	input OR_data0_i,
-	input OR_data1_i,
+	input AND_data0_i,
+	input AND_data1_i,
 	
-	output reg OR_result_o
+	output reg AND_result_o
 );
 
 	always@(*) begin
-		OR_result_o = OR_data0_i | OR_data1_i;
+		AND_result_o = AND_data0_i & AND_data1_i;
 	end
 
 endmodule

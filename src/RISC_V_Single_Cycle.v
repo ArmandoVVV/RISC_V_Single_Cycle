@@ -80,7 +80,7 @@ wire [31:0] pc_plus_imm_w;
 /**PC_PLUS_4_OR_PC_PLUS_IMM**/
 wire [31:0] pc_mux_result_w;
 
-/**OR_operator**/
+/**AND_operator**/
 wire PCSrc_w;
 
 /**READ_DATA_OR_ALU_RESULT**/
@@ -111,7 +111,7 @@ PROGRAM_COUNTER
 (
 	.clk(clk),
 	.reset(reset),
-	.Next_PC(pc_plus_4_w),
+	.Next_PC(pc_mux_result_w),
 	.PC_Value(pc_w)
 );
 
@@ -247,13 +247,13 @@ ALU_UNIT
 	.ALU_Result_o(alu_result_w)
 );
 
-OR_operator
-OR_OPERATOR_UNIT
+AND_operator
+AND_OPERATOR_UNIT
 (
-	.OR_data0_i(branch_w),
-	.OR_data1_i(zero_w),
+	.AND_data0_i(branch_w),
+	.AND_data1_i(zero_w),
 	
-	.OR_result_o(PCSrc_w)
+	.AND_result_o(PCSrc_w)
 );
 
 Multiplexer_2_to_1		// nuevo modulo

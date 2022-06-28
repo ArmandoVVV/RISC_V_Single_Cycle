@@ -40,6 +40,12 @@ localparam I_Type_XORI		= 7'bx_001_100;
 
 localparam U_Type_LUI		= 7'bx_010_xxx;
 
+localparam B_Type_BEQ		= 7'bx_011_000;
+localparam B_Type_BNE		= 7'bx_011_001;
+localparam B_Type_BLT		= 7'bx_011_100;
+localparam B_Type_BGE		= 7'bx_011_101;
+
+
 
 reg [3:0] alu_control_values;
 wire [6:0] selector;
@@ -64,6 +70,11 @@ always@(selector)begin
 		I_Type_XORI:	alu_control_values = 4'b1000;
 		
 		U_Type_LUI:		alu_control_values = 4'b0001;
+		
+		B_Type_BEQ:		alu_control_values = 4'b1001;
+		B_Type_BNE:		alu_control_values = 4'b1010;
+		B_Type_BLT:		alu_control_values = 4'b1011;
+		B_Type_BGE:		alu_control_values = 4'b1100;
 	
 
 		default: alu_control_values = 4'b00_00;

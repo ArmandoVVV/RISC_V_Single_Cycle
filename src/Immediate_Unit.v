@@ -23,10 +23,12 @@ module Immediate_Unit
 
 always@(op_i, Instruction_bus_i) begin // se agrego el Instruction_bus_i porque no se actualizaba el immediate_o
 
-	if(op_i == 7'h13)
+	if(op_i == 7'h13)	// opcode en hexadecimal
 		Immediate_o = {{20{Instruction_bus_i[31]}},Instruction_bus_i[31:20]};// I format
 	else if(op_i ==  7'h37)
 		Immediate_o = {{12{Instruction_bus_i[31]}},Instruction_bus_i[31:12]};// U format
+	else if(op_i == 7'h63) //B format
+		Immediate_o = {{{{{{19{Instruction_bus_i[31]}},Instruction_bus_i[31]},Instruction_bus_i[7]},Instruction_bus_i[30:25]},Instruction_bus_i[11:8]},1'b0};
 		
 end
 

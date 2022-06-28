@@ -31,6 +31,10 @@ localparam SRLI = 4'b0100;
 localparam SUB = 4'b0101;
 localparam AND = 4'b0111;
 localparam XOR = 4'b1000;
+localparam BEQ = 4'b1001;
+localparam BNE = 4'b1010;
+localparam BLT = 4'b1011;
+localparam BGE = 4'b1100;
    
    always @ (A_i or B_i or ALU_Operation_i)
      begin
@@ -51,6 +55,14 @@ localparam XOR = 4'b1000;
 			ALU_Result_o = A_i & B_i;
 		XOR:
 			ALU_Result_o = A_i ^ B_i;
+		BEQ:
+			ALU_Result_o = (A_i == B_i) ? 0 : 1;
+		BNE:
+			ALU_Result_o = (A_i != B_i) ? 0 : 1;
+		BLT:
+			ALU_Result_o = (A_i < B_i) ? 0 : 1;
+		BGE:
+			ALU_Result_o = (A_i >= B_i) ? 0 : 1;
 
 	
 		default:

@@ -19,13 +19,30 @@ MAIN:
 	
 	#################################################################
 	
+	#addi t0, zero, 14	# t0 = 0 + 14
+	#addi t1, zero, 13	# t1 = 0 + 13
+	#and t2, t0, t1		# t2 = 12
+	#andi t3, t2, 5		# t3 = 4
+	#or t0, t0, t1		# t0 = 15
+	#xor t0, t0, t1		# t0 = 2
+	#xori t0, t0, 5		# t0 = 7
+	#addi t5, zero, 70	# t5 = 70
+	#srl t0, t5, t3		# t0 = 4
+	#sll t0, t2, t3		# t0 = 192
+	
+	#################################################################
+	
+main:
 	addi t0, zero, 14	# t0 = 0 + 14
-	addi t1, zero, 13	# t1 = 0 + 13
-	and t2, t0, t1		# t2 = 12
-	andi t3, t2, 5		# t3 = 4
-	or t0, t0, t1		# t0 = 15
-	xor t0, t0, t1		# t0 = 2
-	xori t0, t0, 5		# t0 = 7
-	addi t5, zero, 70	# t5 = 70
-	srl t0, t5, t3		# t0 = 4
-	sll t0, t2, t3		# t0 = 192
+	addi t1, t1, 5	# t1 = 0 + 5
+	addi t2, zero, 15	# t2 = 0 + 5
+	
+	bge  t2, t1, main
+	
+	addi zero, zero, 0
+	addi zero, zero, 1
+jump:
+	addi zero, zero, 2
+	
+	
+	
