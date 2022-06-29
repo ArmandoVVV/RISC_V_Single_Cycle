@@ -33,16 +33,36 @@ MAIN:
 	#################################################################
 	
 main:
-	addi t0, zero, 14	# t0 = 0 + 14
-	addi t1, t1, 5	# t1 = 0 + 5
-	addi t2, zero, 15	# t2 = 0 + 5
+	#lui t0, 0x10010	# t0 = 0 + 14
+	#addi t1, t1, 1	# t1 = 0 + 5
+	#addi t2, zero, 2	# t2 = 0 + 5
+	#addi t3, zero, 3
 	
-	bge  t2, t1, main
+	#sw t1, 0(t0)
+	#sw t2, 4(t0)
+	#sw t3, 8(t0)
 	
-	addi zero, zero, 0
-	addi zero, zero, 1
-jump:
-	addi zero, zero, 2
+	#lw t2, 0(t0)
+	#lw t2, 4(t0)
+	#lw t2, 8(t0)
+	
+	#addi zero, zero, 0
+	
+	#################################################################
+	
+	addi t1, t1, 1	# t1 = 0 + 5
+	addi t2, zero, 2	# t2 = 0 + 5
+	addi t3, zero, 3
+	
+	jal t1, jump
+	
+	addi t3, t3, 3
+	addi t3, t3, 3
+	addi t3, t3, 3
+	
+jump:	
+	addi t2, t2, 2
+
 	
 	
 	
