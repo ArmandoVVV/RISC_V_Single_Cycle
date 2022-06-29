@@ -57,12 +57,13 @@ main:
 	jal t1, jump
 	
 	addi t3, t3, 3
-	addi t3, t3, 3
-	addi t3, t3, 3
+	jal t1, end
 	
 jump:	
+	jalr t2, t1, 4
 	addi t2, t2, 2
-
+end:
+	add zero,zero,zero
 	
 	
 	
