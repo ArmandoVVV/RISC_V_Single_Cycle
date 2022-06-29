@@ -27,7 +27,7 @@ module PC_Register
 
 always@(negedge reset or posedge clk) begin
 	if(reset==0)
-		PC_Value <= 0;
+		PC_Value <= 32'h00400000; // valor que muestra rars del pc
 	else	
 		PC_Value<= Next_PC;
 end
