@@ -27,7 +27,9 @@ module RISC_V_Single_Cycle
 (
 	// Inputs
 	input clk,
-	input reset
+	input reset,
+	
+	output [31:0] alu_result	// para calculo de la frecuencia
 
 );
 //******************************************************************/
@@ -290,6 +292,6 @@ REG_OR_PC
 
 );
 
-
+assign alu_result = alu_result_w;
 endmodule
 
