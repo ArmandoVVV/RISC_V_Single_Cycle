@@ -103,8 +103,8 @@ CONTROL_UNIT
 	/****/
 	.OP_i(instruction_bus_w[6:0]),
 	/** outputus**/
-	.Imm_plus_reg_o(imm_plus_reg_w),
-	.Branch_o(branch_w),
+	.Imm_plus_reg_o(imm_plus_reg_w),	// agregado
+	.Branch_o(branch_w),					// agregado
 	.ALU_Op_o(alu_op_w),
 	.ALU_Src_o(alu_src_w),
 	.Reg_Write_o(reg_write_w),
@@ -255,7 +255,7 @@ ALU_UNIT
 	.ALU_Result_o(alu_result_w)
 );
 
-AND_operator
+AND_operator					// nuevo modulo
 AND_OPERATOR_UNIT
 (
 	.AND_data0_i(branch_w),
