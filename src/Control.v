@@ -15,7 +15,7 @@ module Control
 (
 	input [6:0]OP_i,
 	
-	
+	output Imm_plus_reg_o,
 	output Branch_o,
 	output Mem_Read_o,
 	output Mem_to_Reg_o,
@@ -37,18 +37,19 @@ localparam J_Type				= 7'h6F;
 
 
 
-reg [8:0] control_values;
+reg [9:0] control_values;
 
 always@(OP_i) begin
-	case(OP_i)//                          876_54_3_210
-		R_Type:			control_values = 9'b001_00_0_000;
-		I_Type_LOGIC:	control_values = 9'b001_00_1_001;
-		U_Type:			control_values = 9'b001_00_1_010;
-		B_Type:			control_values = 9'b100_00_0_011;
+	case(OP_i)//                           9_876_54_3_210
+		R_Type:			control_values = 10'b0_001_00_0_000;
+		I_Type_LOGIC:	control_values = 10'b0_001_00_1_001;
+		U_Type:			control_values = 10'b0_001_00_1_010;
+		B_Type:			control_values = 10'b0_100_00_0_011;
+		I_Type_JUMP:	control_values = 10'b1_101_00_1_100;
+		S_Type:			control_values = 10'b0_000_01_1_101;
+		I_Type_LOAD:	control_values = 10'b0_011_10_1_110;
+		J_Type:			control_values = 10'b0_101_00_1_111;
 		
-		S_Type:			control_values = 9'b000_01_1_101;
-		I_Type_LOAD:	control_values = 9'b011_10_1_110;
-		J_Type:			control_values = 9'b101_00_1_111;
 		
 
 
@@ -56,6 +57,8 @@ always@(OP_i) begin
 			control_values= 9'b000_00_000;
 		endcase
 end	
+
+assign Imm_plus_reg_o = control_values[9];
 
 assign Branch_o = control_values[8];
 

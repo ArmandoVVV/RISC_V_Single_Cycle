@@ -21,6 +21,7 @@ add wave -noupdate -group {ALU CONTROL} /RISC_V_Single_Cycle_TB/DUV/ALU_CONTROL_
 add wave -noupdate -group {ALU CONTROL} /RISC_V_Single_Cycle_TB/DUV/ALU_CONTROL_UNIT/ALU_Op_i
 add wave -noupdate -group {ALU CONTROL} /RISC_V_Single_Cycle_TB/DUV/ALU_CONTROL_UNIT/funct3_i
 add wave -noupdate -group {ALU CONTROL} /RISC_V_Single_Cycle_TB/DUV/ALU_CONTROL_UNIT/ALU_Operation_o
+<<<<<<< Updated upstream
 add wave -noupdate -expand -group s0 /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_s0_fp/enable
 add wave -noupdate -expand -group s0 -radix unsigned /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_s0_fp/DataInput
 add wave -noupdate -expand -group s0 -radix unsigned /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_s0_fp/DataOutput
@@ -47,6 +48,48 @@ add wave -noupdate -expand -group {PROGRAM MEMORY} -radix hexadecimal /RISC_V_Si
 add wave -noupdate -expand -group {PROGRAM MEMORY} -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/PROGRAM_MEMORY/Instruction_o
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {7 ps} 0}
+=======
+add wave -noupdate -group {MUX PC OR REG} /RISC_V_Single_Cycle_TB/DUV/REG_OR_PC/Selector_i
+add wave -noupdate -group {MUX PC OR REG} -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REG_OR_PC/Mux_Data_0_i
+add wave -noupdate -group {MUX PC OR REG} -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REG_OR_PC/Mux_Data_1_i
+add wave -noupdate -group {MUX PC OR REG} -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REG_OR_PC/Mux_Output_o
+add wave -noupdate -group ADDER -radix hexadecimal -childformat {{{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[31]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[30]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[29]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[28]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[27]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[26]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[25]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[24]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[23]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[22]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[21]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[20]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[19]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[18]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[17]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[16]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[15]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[14]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[13]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[12]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[11]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[10]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[9]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[8]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[7]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[6]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[5]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[4]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[3]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[2]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[1]} -radix hexadecimal} {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[0]} -radix hexadecimal}} -subitemconfig {{/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[31]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[30]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[29]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[28]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[27]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[26]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[25]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[24]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[23]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[22]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[21]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[20]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[19]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[18]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[17]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[16]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[15]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[14]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[13]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[12]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[11]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[10]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[9]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[8]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[7]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[6]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[5]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[4]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[3]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[2]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[1]} {-height 15 -radix hexadecimal} {/RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0[0]} {-height 15 -radix hexadecimal}} /RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data0
+add wave -noupdate -group ADDER -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Data1
+add wave -noupdate -group ADDER -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/PC_PLUS_IMM/Result
+add wave -noupdate -expand -group t1 /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t1/enable
+add wave -noupdate -expand -group t1 -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t1/DataOutput
+add wave -noupdate -expand -group t2 /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t2/enable
+add wave -noupdate -expand -group t2 -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t2/DataOutput
+add wave -noupdate -group t3 /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t3/enable
+add wave -noupdate -group t3 -radix unsigned /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t3/DataOutput
+add wave -noupdate -group t5 /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t5/enable
+add wave -noupdate -group t5 -radix unsigned /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_t5/DataOutput
+add wave -noupdate -expand -group SP /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_sp/enable
+add wave -noupdate -expand -group SP -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_sp/DataInput
+add wave -noupdate -expand -group SP -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_sp/DataOutput
+add wave -noupdate -expand -group RA -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_ra/enable
+add wave -noupdate -expand -group RA -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_ra/DataInput
+add wave -noupdate -expand -group RA -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/REGISTER_FILE_UNIT/Register_ra/DataOutput
+add wave -noupdate -group {RAM SP} -radix hexadecimal {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[255]}
+add wave -noupdate -group {RAM SP} -radix hexadecimal {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[254]}
+add wave -noupdate -group {RAM SP} -radix hexadecimal {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[253]}
+add wave -noupdate -group {RAM SP} -radix hexadecimal {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[252]}
+add wave -noupdate -group {RAM SP} -radix hexadecimal {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[251]}
+add wave -noupdate -group {RAM SP} -radix hexadecimal {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[250]}
+add wave -noupdate -expand -group RAM -expand -group RAM -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[0]}
+add wave -noupdate -expand -group RAM -expand -group RAM -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[8]}
+add wave -noupdate -expand -group RAM -expand -group RAM -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[16]}
+add wave -noupdate -expand -group RAM -expand -group {TORRE AUXILIAR} -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[1]}
+add wave -noupdate -expand -group RAM -expand -group {TORRE AUXILIAR} -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[9]}
+add wave -noupdate -expand -group RAM -expand -group {TORRE AUXILIAR} -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[17]}
+add wave -noupdate -expand -group RAM -expand -group {TORRE DESTINO} -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[2]}
+add wave -noupdate -expand -group RAM -expand -group {TORRE DESTINO} -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[10]}
+add wave -noupdate -expand -group RAM -expand -group {TORRE DESTINO} -radix unsigned {/RISC_V_Single_Cycle_TB/DUV/DATA_MEMORY/ram[18]}
+add wave -noupdate -expand -group {PROGRAM MEMORY} -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/PROGRAM_MEMORY/Address_i
+add wave -noupdate -expand -group {PROGRAM MEMORY} -radix hexadecimal /RISC_V_Single_Cycle_TB/DUV/PROGRAM_MEMORY/Instruction_o
+TreeUpdate [SetDefaultTree]
+WaveRestoreCursors {{Cursor 1} {15 ps} 0}
+>>>>>>> Stashed changes
 quietly wave cursor active 1
 configure wave -namecolwidth 133
 configure wave -valuecolwidth 50
@@ -62,4 +105,8 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
+<<<<<<< Updated upstream
 WaveRestoreZoom {0 ps} {16 ps}
+=======
+WaveRestoreZoom {0 ps} {64 ps}
+>>>>>>> Stashed changes

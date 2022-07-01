@@ -73,8 +73,15 @@ localparam JAL = 4'b1101;
 			ALU_Result_o = 0;
 		endcase // case(control)
 		
-		Zero_o = (ALU_Result_o == 0) ? 1'b1 : 1'b0;
-		Zero_o = (ALU_Operation_i == 4'b1101) ? 1'b1 : 1'b0;	// para saltar si es jal
+		if(ALU_Operation_i == 4'b1101)
+			Zero_o = 1'b1;
+		else if(ALU_Result_o == 0)
+			Zero_o = 1'b1;
+		else
+			Zero_o = 1'b0;
+		
+		//Zero_o = (ALU_Result_o == 0) ? 1'b1 : 1'b0;
+		//Zero_o = (ALU_Operation_i == 4'b1101) ? 1'b1 : 1'b0;	// para saltar si es jal
 		
      end // always @ (A or B or control)
 endmodule // ALU

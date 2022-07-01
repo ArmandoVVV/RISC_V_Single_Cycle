@@ -27,7 +27,9 @@ module RISC_V_Single_Cycle
 (
 	// Inputs
 	input clk,
-	input reset
+	input reset,
+	
+	output [31:0] alu_result	// para calculo de la frecuencia
 
 );
 //******************************************************************/
@@ -38,6 +40,7 @@ module RISC_V_Single_Cycle
 /* Signals to connect modules*/
 
 /**Control**/
+wire imm_plus_reg_w;		// agregado
 wire branch_w;				// agregado
 wire alu_src_w;
 wire reg_write_w;
@@ -86,6 +89,9 @@ wire PCSrc_w;
 /**READ_DATA_OR_ALU_RESULT**/
 wire [31:0] alu_or_read_data_w;
 
+/**REG_OR_PC**/
+wire [31:0] reg_or_pc_w;
+
 //******************************************************************/
 //******************************************************************/
 //******************************************************************/
@@ -97,7 +103,8 @@ CONTROL_UNIT
 	/****/
 	.OP_i(instruction_bus_w[6:0]),
 	/** outputus**/
-	.Branch_o(branch_w),
+	.Imm_plus_reg_o(imm_plus_reg_w),	// agregado
+	.Branch_o(branch_w),					// agregado
 	.ALU_Op_o(alu_op_w),
 	.ALU_Src_o(alu_src_w),
 	.Reg_Write_o(reg_write_w),
@@ -157,7 +164,7 @@ PC_PLUS_4
 Adder_32_Bits		// modulo nuevo adder de pc + immediate
 PC_PLUS_IMM
 (
-	.Data0(pc_w),
+	.Data0(reg_or_pc_w),
 	.Data1(inmmediate_data_w),
 	.Result(pc_plus_imm_w)
 );
@@ -248,7 +255,7 @@ ALU_UNIT
 	.ALU_Result_o(alu_result_w)
 );
 
-AND_operator
+AND_operator					// nuevo modulo
 AND_OPERATOR_UNIT
 (
 	.AND_data0_i(branch_w),
@@ -271,7 +278,20 @@ READ_DATA_OR_ALU_RESULT
 
 );
 
+Multiplexer_2_to_1		// nuevo modulo
+#(
+	.NBits(32)
+)
+REG_OR_PC
+(
+	.Selector_i(imm_plus_reg_w),
+	.Mux_Data_0_i(pc_w),
+	.Mux_Data_1_i(read_data_1_w),
+	
+	.Mux_Output_o(reg_or_pc_w)
 
+);
 
+assign alu_result = alu_result_w;
 endmodule
 

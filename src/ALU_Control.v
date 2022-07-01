@@ -45,12 +45,14 @@ localparam B_Type_BNE		= 7'bx_011_001;
 localparam B_Type_BLT		= 7'bx_011_100;
 localparam B_Type_BGE		= 7'bx_011_101;
 
+localparam I_Type_Jump_JALR= 7'bx_100_000;
 
-localparam S_Type_SW			= 7'bx_100_010;
+localparam S_Type_SW			= 7'bx_101_010;
 
-localparam I_Type_Load_LW	= 7'bx_101_010;
+localparam I_Type_Load_LW	= 7'bx_110_010;
 
 localparam J_Type_JAL		= 7'bx_111_xxx;
+
 
 
 reg [3:0] alu_control_values;
@@ -87,6 +89,8 @@ always@(selector)begin
 		I_Type_Load_LW:	alu_control_values = 4'b0000;	//suma del imm + registro de la ubicacion de la memoria
 		
 		J_Type_JAL:			alu_control_values = 4'b1101;
+		
+		I_Type_Jump_JALR:	alu_control_values = 4'b1101;
 		
 		
 	

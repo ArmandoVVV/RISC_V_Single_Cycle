@@ -75,6 +75,9 @@ Register_ra
 
 	
 Register
+#(
+	.initial_value(32'h1001_0400)		//sp con un valor inicial del maximo de memoria
+)
 Register_sp
 (
 	.clk(clk),
