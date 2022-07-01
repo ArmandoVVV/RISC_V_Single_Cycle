@@ -75,9 +75,12 @@ Register_ra
 
 	
 Register
+<<<<<<< Updated upstream
+=======
 #(
-	.initial_value(32'h1001_03FC)		//sp con un valor inicial del maximo de memoria
+	.initial_value(32'h1001_0400)		//sp con un valor inicial del maximo de memoria
 )
+>>>>>>> Stashed changes
 Register_sp
 (
 	.clk(clk),

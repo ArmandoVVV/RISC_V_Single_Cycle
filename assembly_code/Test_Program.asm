@@ -49,28 +49,11 @@
 	#addi zero, zero, 0
 	
 	#################################################################
-	
-	#addi t1, t1, 1	# t1 = 0 + 5
-	#addi t2, zero, 2	# t2 = 0 + 5
-	#addi t3, zero, 3
-	
-	#jal t1, jump
-	
-	#addi t3, t3, 3
-	#jal t1, end
-	
-#jump:	
-#	jalr t2, t1, 4
-#	addi t2, t2, 2
-#end:
-#	add zero,zero,zero
-	
-	#################################################################
-	
+
 # practica 1 Torres de Hanoi
 # Armando Cabrales
 
-.eqv discos 6
+.eqv discos 3
 .data
 .text
 
